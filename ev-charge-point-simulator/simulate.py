@@ -39,13 +39,20 @@ class ChargePointSimlator(cp):
 
     async def send_commands(self, arguments):
         await self.send_boot_notification()
+        await self.send_status_notification()
+        await self.send_startTransaction()
+        await self.send_changeConfiguration()
+        await self.send_stopTransactions()
         await self.send_heartbeats(arguments)
+        
+        
 
     async def send_heartbeats(self, arguments):
         while True:
             request = call.HeartbeatPayload()
             await self.call(request)
             await asyncio.sleep(arguments["heartbeat_interval"])
+    
 
 
 async def main(arguments):

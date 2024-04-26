@@ -1,0 +1,4 @@
+boto3
+websockets
+asyncio-mqtt
+aws-cdk-lib==2.128.0

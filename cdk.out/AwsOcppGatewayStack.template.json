@@ -1,0 +1,2533 @@
+{
+ "Resources": {
+  "VPCB9E5F0B4": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/Resource"
+   }
+  },
+  "VPCpublicSubnet1Subnet325F50B2": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-2a",
+    "CidrBlock": "10.0.0.0/19",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/publicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet1/Subnet"
+   }
+  },
+  "VPCpublicSubnet1RouteTableF591E248": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/publicSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet1/RouteTable"
+   }
+  },
+  "VPCpublicSubnet1RouteTableAssociationBFFA43B7": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCpublicSubnet1RouteTableF591E248"
+    },
+    "SubnetId": {
+     "Ref": "VPCpublicSubnet1Subnet325F50B2"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet1/RouteTableAssociation"
+   }
+  },
+  "VPCpublicSubnet1DefaultRoute19059ECD": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "VPCIGWB7E252D3"
+    },
+    "RouteTableId": {
+     "Ref": "VPCpublicSubnet1RouteTableF591E248"
+    }
+   },
+   "DependsOn": [
+    "VPCVPCGW99B986DC"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet1/DefaultRoute"
+   }
+  },
+  "VPCpublicSubnet1EIP2D50A06D": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/publicSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet1/EIP"
+   }
+  },
+  "VPCpublicSubnet1NATGatewayEEDEB5A1": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "VPCpublicSubnet1EIP2D50A06D",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "VPCpublicSubnet1Subnet325F50B2"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/publicSubnet1"
+     }
+    ]
+   },
+   "DependsOn": [
+    "VPCpublicSubnet1DefaultRoute19059ECD",
+    "VPCpublicSubnet1RouteTableAssociationBFFA43B7"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet1/NATGateway"
+   }
+  },
+  "VPCpublicSubnet2Subnet2B2DFF71": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-2b",
+    "CidrBlock": "10.0.32.0/19",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/publicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet2/Subnet"
+   }
+  },
+  "VPCpublicSubnet2RouteTable55DAB1BB": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/publicSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet2/RouteTable"
+   }
+  },
+  "VPCpublicSubnet2RouteTableAssociation0849466B": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCpublicSubnet2RouteTable55DAB1BB"
+    },
+    "SubnetId": {
+     "Ref": "VPCpublicSubnet2Subnet2B2DFF71"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet2/RouteTableAssociation"
+   }
+  },
+  "VPCpublicSubnet2DefaultRoute9ED4D6BC": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "VPCIGWB7E252D3"
+    },
+    "RouteTableId": {
+     "Ref": "VPCpublicSubnet2RouteTable55DAB1BB"
+    }
+   },
+   "DependsOn": [
+    "VPCVPCGW99B986DC"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet2/DefaultRoute"
+   }
+  },
+  "VPCpublicSubnet3Subnet0CBD4ADC": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-2c",
+    "CidrBlock": "10.0.64.0/19",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/publicSubnet3"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet3/Subnet"
+   }
+  },
+  "VPCpublicSubnet3RouteTable07F40487": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/publicSubnet3"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet3/RouteTable"
+   }
+  },
+  "VPCpublicSubnet3RouteTableAssociation2A52E4AA": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCpublicSubnet3RouteTable07F40487"
+    },
+    "SubnetId": {
+     "Ref": "VPCpublicSubnet3Subnet0CBD4ADC"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet3/RouteTableAssociation"
+   }
+  },
+  "VPCpublicSubnet3DefaultRoute6038437A": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "VPCIGWB7E252D3"
+    },
+    "RouteTableId": {
+     "Ref": "VPCpublicSubnet3RouteTable07F40487"
+    }
+   },
+   "DependsOn": [
+    "VPCVPCGW99B986DC"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/publicSubnet3/DefaultRoute"
+   }
+  },
+  "VPCprivateSubnet1SubnetE522290D": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-2a",
+    "CidrBlock": "10.0.96.0/19",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/privateSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/privateSubnet1/Subnet"
+   }
+  },
+  "VPCprivateSubnet1RouteTable41566AF9": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/privateSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/privateSubnet1/RouteTable"
+   }
+  },
+  "VPCprivateSubnet1RouteTableAssociation43FE0C59": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCprivateSubnet1RouteTable41566AF9"
+    },
+    "SubnetId": {
+     "Ref": "VPCprivateSubnet1SubnetE522290D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/privateSubnet1/RouteTableAssociation"
+   }
+  },
+  "VPCprivateSubnet1DefaultRoute68B79172": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "VPCpublicSubnet1NATGatewayEEDEB5A1"
+    },
+    "RouteTableId": {
+     "Ref": "VPCprivateSubnet1RouteTable41566AF9"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/privateSubnet1/DefaultRoute"
+   }
+  },
+  "VPCprivateSubnet2Subnet2F4D9530": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-2b",
+    "CidrBlock": "10.0.128.0/19",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/privateSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/privateSubnet2/Subnet"
+   }
+  },
+  "VPCprivateSubnet2RouteTableBBE8BB2B": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/privateSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/privateSubnet2/RouteTable"
+   }
+  },
+  "VPCprivateSubnet2RouteTableAssociation45BBC356": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCprivateSubnet2RouteTableBBE8BB2B"
+    },
+    "SubnetId": {
+     "Ref": "VPCprivateSubnet2Subnet2F4D9530"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/privateSubnet2/RouteTableAssociation"
+   }
+  },
+  "VPCprivateSubnet2DefaultRouteD808B206": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "VPCpublicSubnet1NATGatewayEEDEB5A1"
+    },
+    "RouteTableId": {
+     "Ref": "VPCprivateSubnet2RouteTableBBE8BB2B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/privateSubnet2/DefaultRoute"
+   }
+  },
+  "VPCprivateSubnet3Subnet3C29037E": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "us-east-2c",
+    "CidrBlock": "10.0.160.0/19",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/privateSubnet3"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/privateSubnet3/Subnet"
+   }
+  },
+  "VPCprivateSubnet3RouteTableB07AC026": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC/privateSubnet3"
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/privateSubnet3/RouteTable"
+   }
+  },
+  "VPCprivateSubnet3RouteTableAssociation37740584": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCprivateSubnet3RouteTableB07AC026"
+    },
+    "SubnetId": {
+     "Ref": "VPCprivateSubnet3Subnet3C29037E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/privateSubnet3/RouteTableAssociation"
+   }
+  },
+  "VPCprivateSubnet3DefaultRoute3301BB32": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "VPCpublicSubnet1NATGatewayEEDEB5A1"
+    },
+    "RouteTableId": {
+     "Ref": "VPCprivateSubnet3RouteTableB07AC026"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/privateSubnet3/DefaultRoute"
+   }
+  },
+  "VPCIGWB7E252D3": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "AwsOcppGatewayStack/VPC"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/IGW"
+   }
+  },
+  "VPCVPCGW99B986DC": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "VPCIGWB7E252D3"
+    },
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/VPC/VPCGW"
+   }
+  },
+  "IOTDescribeEndpoint77221C07": {
+   "Type": "Custom::AWS",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+      "Arn"
+     ]
+    },
+    "Create": "{\"service\":\"Iot\",\"action\":\"describeEndpoint\",\"parameters\":{\"endpointType\":\"iot:Data-ATS\"},\"physicalResourceId\":{\"id\":\"1709140932222\"}}",
+    "Update": "{\"service\":\"Iot\",\"action\":\"describeEndpoint\",\"parameters\":{\"endpointType\":\"iot:Data-ATS\"},\"physicalResourceId\":{\"id\":\"1709140932222\"}}",
+    "InstallLatestAwsSdk": false
+   },
+   "DependsOn": [
+    "IOTDescribeEndpointCustomResourcePolicyE9D94C17"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/IOTDescribeEndpoint/Resource/Default"
+   }
+  },
+  "IOTDescribeEndpointCustomResourcePolicyE9D94C17": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "iot:DescribeEndpoint",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "IOTDescribeEndpointCustomResourcePolicyE9D94C17",
+    "Roles": [
+     {
+      "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/IOTDescribeEndpoint/CustomResourcePolicy/Resource"
+   }
+  },
+  "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource"
+   }
+  },
+  "AWS679f53fac002430cb0da5b7982bd22872D164C4C": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-654654338684-us-east-2",
+     "S3Key": "ed6cd104ff5f101d06dae8cb2b87cc6e6d69b9a22055b467ea6cae10ff023023.zip"
+    },
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Timeout": 120
+   },
+   "DependsOn": [
+    "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/AWS679f53fac002430cb0da5b7982bd2287/Resource",
+    "aws:asset:path": "asset.ed6cd104ff5f101d06dae8cb2b87cc6e6d69b9a22055b467ea6cae10ff023023",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AWS679f53fac002430cb0da5b7982bd2287LogRetentionCE72797A": {
+   "Type": "Custom::LogRetention",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+      "Arn"
+     ]
+    },
+    "LogGroupName": {
+     "Fn::Join": [
+      "",
+      [
+       "/aws/lambda/",
+       {
+        "Ref": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
+       }
+      ]
+     ]
+    },
+    "RetentionInDays": 1
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/AWS679f53fac002430cb0da5b7982bd2287/LogRetention/Resource"
+   }
+  },
+  "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource"
+   }
+  },
+  "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:DeleteRetentionPolicy",
+        "logs:PutRetentionPolicy"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+    "Roles": [
+     {
+      "Ref": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Handler": "index.handler",
+    "Runtime": "nodejs18.x",
+    "Timeout": 900,
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-654654338684-us-east-2",
+     "S3Key": "4e26bf2d0a26f2097fb2b261f22bb51e3f6b4b52635777b1e54edbd8e2d58c35.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+      "Arn"
+     ]
+    }
+   },
+   "DependsOn": [
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
+    "aws:asset:path": "asset.4e26bf2d0a26f2097fb2b261f22bb51e3f6b4b52635777b1e54edbd8e2d58c35",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ChargePointTable0F8300CB": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "chargePointId",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "chargePointId",
+      "KeyType": "HASH"
+     }
+    ],
+    "SSESpecification": {
+     "SSEEnabled": true
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/ChargePointTable/Resource"
+   }
+  },
+  "UpdateEventConfigurationsABD0680D": {
+   "Type": "Custom::AWS",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+      "Arn"
+     ]
+    },
+    "Create": "{\"service\":\"Iot\",\"action\":\"updateEventConfigurations\",\"parameters\":{\"eventConfigurations\":{\"THING\":{\"Enabled\":true}}},\"physicalResourceId\":{\"id\":\"1709140932335\"}}",
+    "Delete": "{\"service\":\"Iot\",\"action\":\"updateEventConfigurations\",\"parameters\":{\"eventConfigurations\":{\"THING\":{\"Enabled\":false}}}}",
+    "InstallLatestAwsSdk": false
+   },
+   "DependsOn": [
+    "UpdateEventConfigurationsCustomResourcePolicyBEFC9897"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/UpdateEventConfigurations/Resource/Default"
+   }
+  },
+  "UpdateEventConfigurationsCustomResourcePolicyBEFC9897": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "iot:UpdateEventConfigurations",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "UpdateEventConfigurationsCustomResourcePolicyBEFC9897",
+    "Roles": [
+     {
+      "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/UpdateEventConfigurations/CustomResourcePolicy/Resource"
+   }
+  },
+  "CreateThingRule3FC3402C": {
+   "Type": "AWS::IoT::TopicRule",
+   "Properties": {
+    "TopicRulePayload": {
+     "Actions": [
+      {
+       "DynamoDBv2": {
+        "PutItem": {
+         "TableName": {
+          "Ref": "ChargePointTable0F8300CB"
+         }
+        },
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "CreateThingRuleTopicRuleActionRole2C7FD6CB",
+          "Arn"
+         ]
+        }
+       }
+      }
+     ],
+     "AwsIotSqlVersion": "2016-03-23",
+     "Description": "Insert new IOT Thing reference into DynamoDB",
+     "Sql": "SELECT thingName as chargePointId, timestamp FROM '$aws/events/thing/+/created'"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/CreateThingRule/Resource"
+   }
+  },
+  "CreateThingRuleTopicRuleActionRole2C7FD6CB": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "iot.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/CreateThingRule/TopicRuleActionRole/Resource"
+   }
+  },
+  "CreateThingRuleTopicRuleActionRoleDefaultPolicy898EFC4B": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "dynamodb:PutItem",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "ChargePointTable0F8300CB",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "CreateThingRuleTopicRuleActionRoleDefaultPolicy898EFC4B",
+    "Roles": [
+     {
+      "Ref": "CreateThingRuleTopicRuleActionRole2C7FD6CB"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/CreateThingRule/TopicRuleActionRole/DefaultPolicy/Resource"
+   }
+  },
+  "DeadLetterQueueForDeletedThings5875D721": {
+   "Type": "AWS::SQS::Queue",
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeadLetterQueueForDeletedThings/Resource"
+   }
+  },
+  "DeadLetterQueueForDeletedThingsPolicy178FC5A2": {
+   "Type": "AWS::SQS::QueuePolicy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sqs:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": {
+        "Fn::GetAtt": [
+         "DeadLetterQueueForDeletedThings5875D721",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Queues": [
+     {
+      "Ref": "DeadLetterQueueForDeletedThings5875D721"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeadLetterQueueForDeletedThings/Policy/Resource"
+   }
+  },
+  "DeletedThingsA7DD5BBA": {
+   "Type": "AWS::SQS::Queue",
+   "Properties": {
+    "RedrivePolicy": {
+     "deadLetterTargetArn": {
+      "Fn::GetAtt": [
+       "DeadLetterQueueForDeletedThings5875D721",
+       "Arn"
+      ]
+     },
+     "maxReceiveCount": 3
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeletedThings/Resource"
+   }
+  },
+  "DeletedThingsPolicyF257134F": {
+   "Type": "AWS::SQS::QueuePolicy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sqs:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": {
+        "Fn::GetAtt": [
+         "DeletedThingsA7DD5BBA",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Queues": [
+     {
+      "Ref": "DeletedThingsA7DD5BBA"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeletedThings/Policy/Resource"
+   }
+  },
+  "DeleteThingServiceRoleB0E1270F": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeleteThing/ServiceRole/Resource"
+   }
+  },
+  "DeleteThingServiceRoleDefaultPolicy46A8818C": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:BatchWriteItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "ChargePointTable0F8300CB",
+          "Arn"
+         ]
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": [
+        "sqs:ChangeMessageVisibility",
+        "sqs:DeleteMessage",
+        "sqs:GetQueueAttributes",
+        "sqs:GetQueueUrl",
+        "sqs:ReceiveMessage"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "DeletedThingsA7DD5BBA",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "DeleteThingServiceRoleDefaultPolicy46A8818C",
+    "Roles": [
+     {
+      "Ref": "DeleteThingServiceRoleB0E1270F"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeleteThing/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "DeleteThing53890846": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "arm64"
+    ],
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-654654338684-us-east-2",
+     "S3Key": "f1c1ba704011e28d1f5f0ac022169ec848ff8b7bd8820b05fe60bf59a4fa1223.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "DYNAMODB_CHARGE_POINT_TABLE": {
+       "Ref": "ChargePointTable0F8300CB"
+      }
+     }
+    },
+    "Handler": "delete_thing.lambda_handler",
+    "MemorySize": 128,
+    "Role": {
+     "Fn::GetAtt": [
+      "DeleteThingServiceRoleB0E1270F",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.9",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "DeleteThingServiceRoleDefaultPolicy46A8818C",
+    "DeleteThingServiceRoleB0E1270F"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeleteThing/Resource",
+    "aws:asset:path": "asset.f1c1ba704011e28d1f5f0ac022169ec848ff8b7bd8820b05fe60bf59a4fa1223",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "DeleteThingLogRetention5F5D60F6": {
+   "Type": "Custom::LogRetention",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+      "Arn"
+     ]
+    },
+    "LogGroupName": {
+     "Fn::Join": [
+      "",
+      [
+       "/aws/lambda/",
+       {
+        "Ref": "DeleteThing53890846"
+       }
+      ]
+     ]
+    },
+    "RetentionInDays": 1
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeleteThing/LogRetention/Resource"
+   }
+  },
+  "DeleteThingSqsEventSourceAwsOcppGatewayStackDeletedThings0B3A925C1C637146": {
+   "Type": "AWS::Lambda::EventSourceMapping",
+   "Properties": {
+    "EventSourceArn": {
+     "Fn::GetAtt": [
+      "DeletedThingsA7DD5BBA",
+      "Arn"
+     ]
+    },
+    "FunctionName": {
+     "Ref": "DeleteThing53890846"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeleteThing/SqsEventSource:AwsOcppGatewayStackDeletedThings0B3A925C/Resource"
+   }
+  },
+  "DeleteThingRule1838D7DF": {
+   "Type": "AWS::IoT::TopicRule",
+   "Properties": {
+    "TopicRulePayload": {
+     "Actions": [
+      {
+       "Sqs": {
+        "QueueUrl": {
+         "Ref": "DeletedThingsA7DD5BBA"
+        },
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "DeleteThingRuleTopicRuleActionRoleF3CAB9DD",
+          "Arn"
+         ]
+        }
+       }
+      }
+     ],
+     "AwsIotSqlVersion": "2016-03-23",
+     "Description": "Delete an IOT Thing reference from DynamoDB",
+     "Sql": "SELECT thingName as chargePointId, timestamp FROM '$aws/events/thing/+/deleted'"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeleteThingRule/Resource"
+   }
+  },
+  "DeleteThingRuleTopicRuleActionRoleF3CAB9DD": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "iot.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeleteThingRule/TopicRuleActionRole/Resource"
+   }
+  },
+  "DeleteThingRuleTopicRuleActionRoleDefaultPolicyE3E10677": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sqs:SendMessage",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "DeletedThingsA7DD5BBA",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "DeleteThingRuleTopicRuleActionRoleDefaultPolicyE3E10677",
+    "Roles": [
+     {
+      "Ref": "DeleteThingRuleTopicRuleActionRoleF3CAB9DD"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeleteThingRule/TopicRuleActionRole/DefaultPolicy/Resource"
+   }
+  },
+  "Policy": {
+   "Type": "AWS::IoT::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Effect": "Allow",
+       "Action": [
+        "iot:Connect"
+       ],
+       "Resource": [
+        "arn:aws:iot:us-east-2:654654338684:client/*"
+       ]
+      },
+      {
+       "Effect": "Allow",
+       "Action": [
+        "iot:Publish",
+        "iot:Receive"
+       ],
+       "Resource": [
+        "arn:aws:iot:us-east-2:654654338684:topic/*/in",
+        "arn:aws:iot:us-east-2:654654338684:topic/*/out"
+       ]
+      },
+      {
+       "Effect": "Allow",
+       "Action": [
+        "iot:Subscribe"
+       ],
+       "Resource": [
+        "arn:aws:iot:us-east-2:654654338684:topicfilter/*/in",
+        "arn:aws:iot:us-east-2:654654338684:topicfilter/*/out"
+       ]
+      }
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/Policy"
+   }
+  },
+  "KeysCertsA9088F21": {
+   "Type": "Custom::AWS",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+      "Arn"
+     ]
+    },
+    "Create": "{\"service\":\"Iot\",\"action\":\"createKeysAndCertificate\",\"parameters\":{\"setAsActive\":true},\"physicalResourceId\":{\"responsePath\":\"certificateId\"}}",
+    "Delete": "{\"service\":\"Iot\",\"action\":\"updateCertificate\",\"parameters\":{\"certificateId\":\"PHYSICAL:RESOURCEID:\",\"newStatus\":\"INACTIVE\"}}",
+    "InstallLatestAwsSdk": false
+   },
+   "DependsOn": [
+    "KeysCertsCustomResourcePolicyFD54CBC7"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/KeysCerts/Resource/Default"
+   }
+  },
+  "KeysCertsCustomResourcePolicyFD54CBC7": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "iot:CreateKeysAndCertificate",
+        "iot:UpdateCertificate"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "KeysCertsCustomResourcePolicyFD54CBC7",
+    "Roles": [
+     {
+      "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/KeysCerts/CustomResourcePolicy/Resource"
+   }
+  },
+  "AttachPolicyIOT552A8C9A": {
+   "Type": "Custom::AWS",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "AWS679f53fac002430cb0da5b7982bd22872D164C4C",
+      "Arn"
+     ]
+    },
+    "Create": {
+     "Fn::Join": [
+      "",
+      [
+       "{\"service\":\"Iot\",\"action\":\"attachPolicy\",\"parameters\":{\"policyName\":\"",
+       {
+        "Fn::GetAtt": [
+         "Policy",
+         "Id"
+        ]
+       },
+       "\",\"target\":\"",
+       {
+        "Fn::GetAtt": [
+         "KeysCertsA9088F21",
+         "certificateArn"
+        ]
+       },
+       "\"},\"physicalResourceId\":{\"id\":\"1709140932358\"}}"
+      ]
+     ]
+    },
+    "Delete": {
+     "Fn::Join": [
+      "",
+      [
+       "{\"service\":\"Iot\",\"action\":\"detachPolicy\",\"parameters\":{\"policyName\":\"",
+       {
+        "Fn::GetAtt": [
+         "Policy",
+         "Id"
+        ]
+       },
+       "\",\"target\":\"",
+       {
+        "Fn::GetAtt": [
+         "KeysCertsA9088F21",
+         "certificateArn"
+        ]
+       },
+       "\"}}"
+      ]
+     ]
+    },
+    "InstallLatestAwsSdk": false
+   },
+   "DependsOn": [
+    "AttachPolicyIOTCustomResourcePolicy441BE032"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/AttachPolicyIOT/Resource/Default"
+   }
+  },
+  "AttachPolicyIOTCustomResourcePolicy441BE032": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "iot:AttachPolicy",
+        "iot:DetachPolicy"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "AttachPolicyIOTCustomResourcePolicy441BE032",
+    "Roles": [
+     {
+      "Ref": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/AttachPolicyIOT/CustomResourcePolicy/Resource"
+   }
+  },
+  "IOTAmazonRootCAStorage2C3D4BB0": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": "Store the IOT PEM file for amazon root certificate",
+    "SecretString": "-----BEGIN CERTIFICATE-----\nMIIDQTCCAimgAwIBAgITBmyfz5m/jAo54vB4ikPmljZbyjANBgkqhkiG9w0BAQsF\nADA5MQswCQYDVQQGEwJVUzEPMA0GA1UEChMGQW1hem9uMRkwFwYDVQQDExBBbWF6\nb24gUm9vdCBDQSAxMB4XDTE1MDUyNjAwMDAwMFoXDTM4MDExNzAwMDAwMFowOTEL\nMAkGA1UEBhMCVVMxDzANBgNVBAoTBkFtYXpvbjEZMBcGA1UEAxMQQW1hem9uIFJv\nb3QgQ0EgMTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALJ4gHHKeNXj\nca9HgFB0fW7Y14h29Jlo91ghYPl0hAEvrAIthtOgQ3pOsqTQNroBvo3bSMgHFzZM\n9O6II8c+6zf1tRn4SWiw3te5djgdYZ6k/oI2peVKVuRF4fn9tBb6dNqcmzU5L/qw\nIFAGbHrQgLKm+a/sRxmPUDgH3KKHOVj4utWp+UhnMJbulHheb4mjUcAwhmahRWa6\nVOujw5H5SNz/0egwLX0tdHA114gk957EWW67c4cX8jJGKLhD+rcdqsq08p8kDi1L\n93FcXmn/6pUCyziKrlA4b9v7LWIbxcceVOF34GfID5yHI9Y/QCB/IIDEgEw+OyQm\njgSubJrIqg0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNVHQ8BAf8EBAMC\nAYYwHQYDVR0OBBYEFIQYzIU07LwMlJQuCFmcx7IQTgoIMA0GCSqGSIb3DQEBCwUA\nA4IBAQCY8jdaQZChGsV2USggNiMOruYou6r4lK5IpDB/G/wkjUu0yKGX9rbxenDI\nU5PMCCjjmCXPI6T53iHTfIUJrU6adTrCC2qJeHZERxhlbI1Bjjt/msv0tadQ1wUs\nN+gDS63pYaACbvXy8MWy7Vu33PqUXHeeE6V/Uq2V8viTO96LXFvKWlJbYK8U90vv\no/ufQJVtMVT8QtPHRh8jrdkPSHCa2XV4cdFyQzR1bldZwgJcJmApzyMZFo6IQ6XU\n5MsI+yMRQ+hDKXJioaldXgjUkK642M4UwtBV8ob2xJNDd2ZhwLnoQdeXeGADbkpy\nrqXRfboQnoZsG4q5WTP468SQvvG5\n-----END CERTIFICATE-----\n"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/IOTAmazonRootCAStorage/Resource"
+   }
+  },
+  "IOTPemCertificate43539AB1": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": "Store the IOT PEM certificate associated with the Gateway",
+    "SecretString": {
+     "Fn::GetAtt": [
+      "KeysCertsA9088F21",
+      "certificatePem"
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/IOTPemCertificate/Resource"
+   }
+  },
+  "IOTPublicCertificate41596AD5": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": "Store the IOT Public Key associated with the Gateway",
+    "SecretString": {
+     "Fn::GetAtt": [
+      "KeysCertsA9088F21",
+      "keyPair.PublicKey"
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/IOTPublicCertificate/Resource"
+   }
+  },
+  "IOTPrivateCertificateCD8C5E6E": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": "Store the IOT PEM certificate associated with the Gateway",
+    "SecretString": {
+     "Fn::GetAtt": [
+      "KeysCertsA9088F21",
+      "keyPair.PrivateKey"
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/IOTPrivateCertificate/Resource"
+   }
+  },
+  "ClusterEB0386A7": {
+   "Type": "AWS::ECS::Cluster",
+   "Properties": {
+    "ClusterSettings": [
+     {
+      "Name": "containerInsights",
+      "Value": "enabled"
+     }
+    ],
+    "Configuration": {
+     "ExecuteCommandConfiguration": {
+      "Logging": "DEFAULT"
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/Cluster/Resource"
+   }
+  },
+  "Role1ABCC5F0": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/Role/Resource"
+   }
+  },
+  "RoleDefaultPolicy5FFB7DAB": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:Query",
+        "dynamodb:Scan"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "ChargePointTable0F8300CB",
+          "Arn"
+         ]
+        },
+        {
+         "Ref": "AWS::NoValue"
+        }
+       ]
+      },
+      {
+       "Action": [
+        "secretsmanager:DescribeSecret",
+        "secretsmanager:GetSecretValue"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "IOTAmazonRootCAStorage2C3D4BB0"
+        },
+        {
+         "Ref": "IOTPemCertificate43539AB1"
+        },
+        {
+         "Ref": "IOTPrivateCertificateCD8C5E6E"
+        },
+        {
+         "Ref": "IOTPublicCertificate41596AD5"
+        }
+       ]
+      },
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "LogGroupF5B46931",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RoleDefaultPolicy5FFB7DAB",
+    "Roles": [
+     {
+      "Ref": "Role1ABCC5F0"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/Role/DefaultPolicy/Resource"
+   }
+  },
+  "ExecutionRole605A040B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ecs-tasks.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/ExecutionRole/Resource"
+   }
+  },
+  "ExecutionRoleDefaultPolicyA5B92313": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:BatchGetImage",
+        "ecr:GetDownloadUrlForLayer"
+       ],
+       "Effect": "Allow",
+       "Resource": "arn:aws:ecr:us-east-2:654654338684:repository/cdk-hnb659fds-container-assets-654654338684-us-east-2"
+      },
+      {
+       "Action": "ecr:GetAuthorizationToken",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "LogGroupF5B46931",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "secretsmanager:DescribeSecret",
+        "secretsmanager:GetSecretValue"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Ref": "IOTAmazonRootCAStorage2C3D4BB0"
+        },
+        {
+         "Ref": "IOTPemCertificate43539AB1"
+        },
+        {
+         "Ref": "IOTPrivateCertificateCD8C5E6E"
+        },
+        {
+         "Ref": "IOTPublicCertificate41596AD5"
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ExecutionRoleDefaultPolicyA5B92313",
+    "Roles": [
+     {
+      "Ref": "ExecutionRole605A040B"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/ExecutionRole/DefaultPolicy/Resource"
+   }
+  },
+  "LogGroupF5B46931": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "RetentionInDays": 3
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/LogGroup/Resource"
+   }
+  },
+  "Task79114B6B": {
+   "Type": "AWS::ECS::TaskDefinition",
+   "Properties": {
+    "ContainerDefinitions": [
+     {
+      "Environment": [
+       {
+        "Name": "AWS_REGION",
+        "Value": "us-east-2"
+       },
+       {
+        "Name": "DYNAMODB_CHARGE_POINT_TABLE",
+        "Value": {
+         "Ref": "ChargePointTable0F8300CB"
+        }
+       },
+       {
+        "Name": "IOT_ENDPOINT",
+        "Value": {
+         "Fn::GetAtt": [
+          "IOTDescribeEndpoint77221C07",
+          "endpointAddress"
+         ]
+        }
+       },
+       {
+        "Name": "IOT_PORT",
+        "Value": "8883"
+       },
+       {
+        "Name": "OCPP_PROTOCOLS",
+        "Value": "ocpp1.6,ocpp2.0,ocpp2.0.1"
+       },
+       {
+        "Name": "OCPP_GATEWAY_PORT",
+        "Value": "80"
+       }
+      ],
+      "Essential": true,
+      "Image": {
+       "Fn::Sub": "654654338684.dkr.ecr.us-east-2.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-654654338684-us-east-2:e0ff73b500f3ea68927285759e236608ad0163fc569f6657bab928ca95d2d378"
+      },
+      "LogConfiguration": {
+       "LogDriver": "awslogs",
+       "Options": {
+        "awslogs-group": {
+         "Ref": "LogGroupF5B46931"
+        },
+        "awslogs-stream-prefix": "Gateway",
+        "awslogs-region": "us-east-2"
+       }
+      },
+      "MountPoints": [
+       {
+        "ContainerPath": "/etc/iot-certificates/",
+        "ReadOnly": false,
+        "SourceVolume": "iot-certificate-volume"
+       }
+      ],
+      "Name": "Container",
+      "PortMappings": [
+       {
+        "ContainerPort": 80,
+        "HostPort": 80,
+        "Protocol": "tcp"
+       }
+      ],
+      "Secrets": [
+       {
+        "Name": "IOT_AMAZON_ROOT_CA",
+        "ValueFrom": {
+         "Ref": "IOTAmazonRootCAStorage2C3D4BB0"
+        }
+       },
+       {
+        "Name": "IOT_GATEWAY_CERTIFICATE",
+        "ValueFrom": {
+         "Ref": "IOTPemCertificate43539AB1"
+        }
+       },
+       {
+        "Name": "IOT_GATEWAY_PUBLIC_KEY",
+        "ValueFrom": {
+         "Ref": "IOTPublicCertificate41596AD5"
+        }
+       },
+       {
+        "Name": "IOT_GATEWAY_PRIVATE_KEY",
+        "ValueFrom": {
+         "Ref": "IOTPrivateCertificateCD8C5E6E"
+        }
+       }
+      ],
+      "Ulimits": [
+       {
+        "HardLimit": 65536,
+        "Name": "nofile",
+        "SoftLimit": 65536
+       }
+      ]
+     }
+    ],
+    "Cpu": "512",
+    "ExecutionRoleArn": {
+     "Fn::GetAtt": [
+      "ExecutionRole605A040B",
+      "Arn"
+     ]
+    },
+    "Family": "AwsOcppGatewayStackTaskC4A181FA",
+    "Memory": "1024",
+    "NetworkMode": "awsvpc",
+    "RequiresCompatibilities": [
+     "FARGATE"
+    ],
+    "RuntimePlatform": {
+     "CpuArchitecture": "ARM64",
+     "OperatingSystemFamily": "LINUX"
+    },
+    "TaskRoleArn": {
+     "Fn::GetAtt": [
+      "Role1ABCC5F0",
+      "Arn"
+     ]
+    },
+    "Volumes": [
+     {
+      "Name": "iot-certificate-volume"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/Task/Resource"
+   }
+  },
+  "SecurityGroupDD263621": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "AwsOcppGatewayStack/SecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "10.0.0.0/16",
+      "Description": "Allow TCP traffic from within VPC",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
+     }
+    ],
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/SecurityGroup/Resource"
+   }
+  },
+  "ServiceD69D759B": {
+   "Type": "AWS::ECS::Service",
+   "Properties": {
+    "Cluster": {
+     "Ref": "ClusterEB0386A7"
+    },
+    "DeploymentConfiguration": {
+     "Alarms": {
+      "AlarmNames": [],
+      "Enable": false,
+      "Rollback": false
+     },
+     "MaximumPercent": 200,
+     "MinimumHealthyPercent": 0
+    },
+    "DesiredCount": 1,
+    "EnableECSManagedTags": false,
+    "HealthCheckGracePeriodSeconds": 60,
+    "LaunchType": "FARGATE",
+    "LoadBalancers": [
+     {
+      "ContainerName": "Container",
+      "ContainerPort": 80,
+      "TargetGroupArn": {
+       "Ref": "LoadBalancerTCPListenertcpGroup27E33887"
+      }
+     }
+    ],
+    "NetworkConfiguration": {
+     "AwsvpcConfiguration": {
+      "AssignPublicIp": "DISABLED",
+      "SecurityGroups": [
+       {
+        "Fn::GetAtt": [
+         "SecurityGroupDD263621",
+         "GroupId"
+        ]
+       }
+      ],
+      "Subnets": [
+       {
+        "Ref": "VPCprivateSubnet1SubnetE522290D"
+       },
+       {
+        "Ref": "VPCprivateSubnet2Subnet2F4D9530"
+       },
+       {
+        "Ref": "VPCprivateSubnet3Subnet3C29037E"
+       }
+      ]
+     }
+    },
+    "TaskDefinition": {
+     "Ref": "Task79114B6B"
+    }
+   },
+   "DependsOn": [
+    "LoadBalancerTCPListener794C2696",
+    "LoadBalancerTCPListenertcpGroup27E33887",
+    "RoleDefaultPolicy5FFB7DAB",
+    "Role1ABCC5F0"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/Service/Service"
+   }
+  },
+  "ServiceTaskCountTarget23E25614": {
+   "Type": "AWS::ApplicationAutoScaling::ScalableTarget",
+   "Properties": {
+    "MaxCapacity": 20,
+    "MinCapacity": 1,
+    "ResourceId": {
+     "Fn::Join": [
+      "",
+      [
+       "service/",
+       {
+        "Ref": "ClusterEB0386A7"
+       },
+       "/",
+       {
+        "Fn::GetAtt": [
+         "ServiceD69D759B",
+         "Name"
+        ]
+       }
+      ]
+     ]
+    },
+    "RoleARN": "arn:aws:iam::654654338684:role/aws-service-role/ecs.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_ECSService",
+    "ScalableDimension": "ecs:service:DesiredCount",
+    "ServiceNamespace": "ecs"
+   },
+   "DependsOn": [
+    "RoleDefaultPolicy5FFB7DAB",
+    "Role1ABCC5F0"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/Service/TaskCount/Target/Resource"
+   }
+  },
+  "ServiceTaskCountTargetAutoscalingProps1D43EC9F": {
+   "Type": "AWS::ApplicationAutoScaling::ScalingPolicy",
+   "Properties": {
+    "PolicyName": "AwsOcppGatewayStackServiceTaskCountTargetAutoscalingProps792CFFF3",
+    "PolicyType": "TargetTrackingScaling",
+    "ScalingTargetId": {
+     "Ref": "ServiceTaskCountTarget23E25614"
+    },
+    "TargetTrackingScalingPolicyConfiguration": {
+     "PredefinedMetricSpecification": {
+      "PredefinedMetricType": "ECSServiceAverageCPUUtilization"
+     },
+     "ScaleInCooldown": 30,
+     "ScaleOutCooldown": 30,
+     "TargetValue": 60
+    }
+   },
+   "DependsOn": [
+    "RoleDefaultPolicy5FFB7DAB",
+    "Role1ABCC5F0"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/Service/TaskCount/Target/AutoscalingProps/Resource"
+   }
+  },
+  "LoadBalancerBE9EEC3A": {
+   "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+   "Properties": {
+    "LoadBalancerAttributes": [
+     {
+      "Key": "deletion_protection.enabled",
+      "Value": "false"
+     }
+    ],
+    "Name": "ocpp-gateway",
+    "Scheme": "internet-facing",
+    "Subnets": [
+     {
+      "Ref": "VPCpublicSubnet1Subnet325F50B2"
+     },
+     {
+      "Ref": "VPCpublicSubnet2Subnet2B2DFF71"
+     },
+     {
+      "Ref": "VPCpublicSubnet3Subnet0CBD4ADC"
+     }
+    ],
+    "Type": "network"
+   },
+   "DependsOn": [
+    "VPCpublicSubnet1DefaultRoute19059ECD",
+    "VPCpublicSubnet1RouteTableAssociationBFFA43B7",
+    "VPCpublicSubnet2DefaultRoute9ED4D6BC",
+    "VPCpublicSubnet2RouteTableAssociation0849466B",
+    "VPCpublicSubnet3DefaultRoute6038437A",
+    "VPCpublicSubnet3RouteTableAssociation2A52E4AA"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/LoadBalancer/Resource"
+   }
+  },
+  "LoadBalancerTCPListener794C2696": {
+   "Type": "AWS::ElasticLoadBalancingV2::Listener",
+   "Properties": {
+    "DefaultActions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "LoadBalancerTCPListenertcpGroup27E33887"
+      },
+      "Type": "forward"
+     }
+    ],
+    "LoadBalancerArn": {
+     "Ref": "LoadBalancerBE9EEC3A"
+    },
+    "Port": 80,
+    "Protocol": "TCP"
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/LoadBalancer/TCPListener/Resource"
+   }
+  },
+  "LoadBalancerTCPListenertcpGroup27E33887": {
+   "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+   "Properties": {
+    "HealthCheckIntervalSeconds": 10,
+    "HealthCheckTimeoutSeconds": 5,
+    "HealthyThresholdCount": 2,
+    "Port": 80,
+    "Protocol": "TCP",
+    "TargetGroupAttributes": [
+     {
+      "Key": "deregistration_delay.timeout_seconds",
+      "Value": "10"
+     }
+    ],
+    "TargetType": "ip",
+    "VpcId": {
+     "Ref": "VPCB9E5F0B4"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/LoadBalancer/TCPListener/tcpGroup/Resource"
+   }
+  },
+  "DeadLetterQueueForIncomingMessagesFEF05D43": {
+   "Type": "AWS::SQS::Queue",
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeadLetterQueueForIncomingMessages/Resource"
+   }
+  },
+  "DeadLetterQueueForIncomingMessagesPolicyB4256BC8": {
+   "Type": "AWS::SQS::QueuePolicy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sqs:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": {
+        "Fn::GetAtt": [
+         "DeadLetterQueueForIncomingMessagesFEF05D43",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Queues": [
+     {
+      "Ref": "DeadLetterQueueForIncomingMessagesFEF05D43"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/DeadLetterQueueForIncomingMessages/Policy/Resource"
+   }
+  },
+  "IncomingMessagesQueueFD1163B2": {
+   "Type": "AWS::SQS::Queue",
+   "Properties": {
+    "RedrivePolicy": {
+     "deadLetterTargetArn": {
+      "Fn::GetAtt": [
+       "DeadLetterQueueForIncomingMessagesFEF05D43",
+       "Arn"
+      ]
+     },
+     "maxReceiveCount": 3
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/IncomingMessagesQueue/Resource"
+   }
+  },
+  "IncomingMessagesQueuePolicyC692B9C3": {
+   "Type": "AWS::SQS::QueuePolicy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sqs:*",
+       "Condition": {
+        "Bool": {
+         "aws:SecureTransport": "false"
+        }
+       },
+       "Effect": "Deny",
+       "Principal": {
+        "AWS": "*"
+       },
+       "Resource": {
+        "Fn::GetAtt": [
+         "IncomingMessagesQueueFD1163B2",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Queues": [
+     {
+      "Ref": "IncomingMessagesQueueFD1163B2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/IncomingMessagesQueue/Policy/Resource"
+   }
+  },
+  "MessagesFromChargePointsRule3B6FE04C": {
+   "Type": "AWS::IoT::TopicRule",
+   "Properties": {
+    "TopicRulePayload": {
+     "Actions": [
+      {
+       "Sqs": {
+        "QueueUrl": {
+         "Ref": "IncomingMessagesQueueFD1163B2"
+        },
+        "RoleArn": {
+         "Fn::GetAtt": [
+          "MessagesFromChargePointsRuleTopicRuleActionRole12C61A2D",
+          "Arn"
+         ]
+        }
+       }
+      }
+     ],
+     "AwsIotSqlVersion": "2016-03-23",
+     "Description": "Insert messages coming from Charge Points into an SQS queue to be processed by the message processor",
+     "Sql": "SELECT * as message,topic(1) as chargePointId FROM '+/in'"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/MessagesFromChargePointsRule/Resource"
+   }
+  },
+  "MessagesFromChargePointsRuleTopicRuleActionRole12C61A2D": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "iot.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/MessagesFromChargePointsRule/TopicRuleActionRole/Resource"
+   }
+  },
+  "MessagesFromChargePointsRuleTopicRuleActionRoleDefaultPolicy8A02C6E3": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sqs:SendMessage",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "IncomingMessagesQueueFD1163B2",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "MessagesFromChargePointsRuleTopicRuleActionRoleDefaultPolicy8A02C6E3",
+    "Roles": [
+     {
+      "Ref": "MessagesFromChargePointsRuleTopicRuleActionRole12C61A2D"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/MessagesFromChargePointsRule/TopicRuleActionRole/DefaultPolicy/Resource"
+   }
+  },
+  "OCPPMessageProcessorServiceRoleC800399C": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/OCPPMessageProcessor/ServiceRole/Resource"
+   }
+  },
+  "OCPPMessageProcessorServiceRoleDefaultPolicyC8E56962": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "sqs:ChangeMessageVisibility",
+        "sqs:DeleteMessage",
+        "sqs:GetQueueAttributes",
+        "sqs:GetQueueUrl",
+        "sqs:ReceiveMessage"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "IncomingMessagesQueueFD1163B2",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "OCPPMessageProcessorServiceRoleDefaultPolicyC8E56962",
+    "Roles": [
+     {
+      "Ref": "OCPPMessageProcessorServiceRoleC800399C"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/OCPPMessageProcessor/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "OCPPMessageProcessor63832E8F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Architectures": [
+     "arm64"
+    ],
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-654654338684-us-east-2",
+     "S3Key": "4e0daf4a4ac51f2f710dc08567368e6a99784034b0723d44fbac0ce39917b141.zip"
+    },
+    "Handler": "message_processor.lambda_handler",
+    "MemorySize": 128,
+    "Role": {
+     "Fn::GetAtt": [
+      "OCPPMessageProcessorServiceRoleC800399C",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.9",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "OCPPMessageProcessorServiceRoleDefaultPolicyC8E56962",
+    "OCPPMessageProcessorServiceRoleC800399C"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/OCPPMessageProcessor/Resource",
+    "aws:asset:path": "asset.4e0daf4a4ac51f2f710dc08567368e6a99784034b0723d44fbac0ce39917b141",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "OCPPMessageProcessorLogRetentionA8B91D1A": {
+   "Type": "Custom::LogRetention",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+      "Arn"
+     ]
+    },
+    "LogGroupName": {
+     "Fn::Join": [
+      "",
+      [
+       "/aws/lambda/",
+       {
+        "Ref": "OCPPMessageProcessor63832E8F"
+       }
+      ]
+     ]
+    },
+    "RetentionInDays": 1
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/OCPPMessageProcessor/LogRetention/Resource"
+   }
+  },
+  "OCPPMessageProcessorSqsEventSourceAwsOcppGatewayStackIncomingMessagesQueue5DC91AE9BCD07467": {
+   "Type": "AWS::Lambda::EventSourceMapping",
+   "Properties": {
+    "EventSourceArn": {
+     "Fn::GetAtt": [
+      "IncomingMessagesQueueFD1163B2",
+      "Arn"
+     ]
+    },
+    "FunctionName": {
+     "Ref": "OCPPMessageProcessor63832E8F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/OCPPMessageProcessor/SqsEventSource:AwsOcppGatewayStackIncomingMessagesQueue5DC91AE9/Resource"
+   }
+  },
+  "PublishToOutTopicPolicyDC4DDD3B": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "iot:Publish",
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:iot:us-east-2:654654338684:topic/$aws/things/*/shadow/update",
+        "arn:aws:iot:us-east-2:654654338684:topic/*/out"
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "PublishToOutTopicPolicyDC4DDD3B",
+    "Roles": [
+     {
+      "Ref": "OCPPMessageProcessorServiceRoleC800399C"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/PublishToOutTopicPolicy/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/2VUXW+jMBD8LX133DSV7vnS9EORer0cVH2tFrOhLsbmvOtEkcV/P2EIpL0XdmbWNuNhxUre3C5lXF7BkRaqrBdGFzLmDKoWcKT3iGol41urxGZv33YbsQuF0SoPhUXutRllLjC+QmFw1mdtTeSUBtbOTot78LDd9eUF+AkYj3ASO68PwDgfvLWM3uK0YHAysjUzqI8GLYscVfCaT0/ehTZ5uBQ6YaApSpAx17YyyM4+BquSoQls9rP4cEDLuQte4S9oW22r5Pc/tRMaGhl3zmiVzI0oc0MSfe0E3b4DETLJdV8E3cq7oGrkOyAUxlUk47OrMmS06fXPrpoucsadKE8WGlcWMk5JJ9AJ7VjGnrpWqywMvcFKJ+gvyfgnYEjqANJzdn1BO0GoPDI1YKFCL2Oe+JipR+4EKpJxYwIx+l4/w0fwFfTfnOp73Gurz7l+V5xl0Bb9hTbuzdEftBqmaIS5AtNfsz9k44JNBvw50XunavTbBiocwkXlZYatI83On1LC0LZGqzR/ENiRAqNtJeN8sq/GG35VhvLqQdXaVvmwb47ti9AJNECslXFQFmDAKm2rw0rGF+Sj8/Wzg/Iu6UNqX/h5jSZGO/bPeOwNZqa5uKBdJzKkNJdCBWLXvPuRk1wfaZO0acl3urcTThHmDNU48b8Dt4E7sVyAaT9ALq9+jj+L675qx2NjmrxOWFei/KTrw+pG/pCrq0/SeuGDZd2gzIb6D5YCzOR7BAAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "AwsOcppGatewayStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "loadBalancerDnsName": {
+   "Description": "The Gateway NLB DNS name",
+   "Value": {
+    "Fn::GetAtt": [
+     "LoadBalancerBE9EEC3A",
+     "DNSName"
+    ]
+   },
+   "Export": {
+    "Name": "loadBalancerDnsName"
+   }
+  },
+  "websocketURL": {
+   "Description": "The Gateway websocket URL",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "ws://",
+      {
+       "Fn::GetAtt": [
+        "LoadBalancerBE9EEC3A",
+        "DNSName"
+       ]
+      }
+     ]
+    ]
+   },
+   "Export": {
+    "Name": "websocketURL"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

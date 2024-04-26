@@ -1,0 +1,623 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "AwsOcppGatewayStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "AwsOcppGatewayStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "AwsOcppGatewayStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://654654338684/us-east-2",
+      "properties": {
+        "templateFile": "AwsOcppGatewayStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::654654338684:role/cdk-hnb659fds-deploy-role-654654338684-us-east-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::654654338684:role/cdk-hnb659fds-cfn-exec-role-654654338684-us-east-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-654654338684-us-east-2/2e314c95ce3a466a8f9bb23a68a4d5de4bc605b4f864756df859fadf34e1ae59.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "AwsOcppGatewayStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::654654338684:role/cdk-hnb659fds-lookup-role-654654338684-us-east-2",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "AwsOcppGatewayStack.assets"
+      ],
+      "metadata": {
+        "/AwsOcppGatewayStack/VPC/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCB9E5F0B4"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet1Subnet325F50B2"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet1RouteTableF591E248"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet1RouteTableAssociationBFFA43B7"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet1DefaultRoute19059ECD"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet1EIP2D50A06D"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet1NATGatewayEEDEB5A1"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet2Subnet2B2DFF71"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet2RouteTable55DAB1BB"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet2RouteTableAssociation0849466B"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet2DefaultRoute9ED4D6BC"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet3/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet3Subnet0CBD4ADC"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet3/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet3RouteTable07F40487"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet3/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet3RouteTableAssociation2A52E4AA"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/publicSubnet3/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCpublicSubnet3DefaultRoute6038437A"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/privateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCprivateSubnet1SubnetE522290D"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/privateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCprivateSubnet1RouteTable41566AF9"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/privateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCprivateSubnet1RouteTableAssociation43FE0C59"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/privateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCprivateSubnet1DefaultRoute68B79172"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/privateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCprivateSubnet2Subnet2F4D9530"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/privateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCprivateSubnet2RouteTableBBE8BB2B"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/privateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCprivateSubnet2RouteTableAssociation45BBC356"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/privateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCprivateSubnet2DefaultRouteD808B206"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/privateSubnet3/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCprivateSubnet3Subnet3C29037E"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/privateSubnet3/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCprivateSubnet3RouteTableB07AC026"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/privateSubnet3/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCprivateSubnet3RouteTableAssociation37740584"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/privateSubnet3/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCprivateSubnet3DefaultRoute3301BB32"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCIGWB7E252D3"
+          }
+        ],
+        "/AwsOcppGatewayStack/VPC/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCVPCGW99B986DC"
+          }
+        ],
+        "/AwsOcppGatewayStack/IOTDescribeEndpoint/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IOTDescribeEndpoint77221C07"
+          }
+        ],
+        "/AwsOcppGatewayStack/IOTDescribeEndpoint/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IOTDescribeEndpointCustomResourcePolicyE9D94C17"
+          }
+        ],
+        "/AwsOcppGatewayStack/AWS679f53fac002430cb0da5b7982bd2287/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd2287ServiceRoleC1EA0FF2"
+          }
+        ],
+        "/AwsOcppGatewayStack/AWS679f53fac002430cb0da5b7982bd2287/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd22872D164C4C"
+          }
+        ],
+        "/AwsOcppGatewayStack/AWS679f53fac002430cb0da5b7982bd2287/LogRetention/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AWS679f53fac002430cb0da5b7982bd2287LogRetentionCE72797A"
+          }
+        ],
+        "/AwsOcppGatewayStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+          }
+        ],
+        "/AwsOcppGatewayStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB"
+          }
+        ],
+        "/AwsOcppGatewayStack/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A"
+          }
+        ],
+        "/AwsOcppGatewayStack/ChargePointTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ChargePointTable0F8300CB"
+          }
+        ],
+        "/AwsOcppGatewayStack/UpdateEventConfigurations/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UpdateEventConfigurationsABD0680D"
+          }
+        ],
+        "/AwsOcppGatewayStack/UpdateEventConfigurations/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UpdateEventConfigurationsCustomResourcePolicyBEFC9897"
+          }
+        ],
+        "/AwsOcppGatewayStack/CreateThingRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CreateThingRule3FC3402C"
+          }
+        ],
+        "/AwsOcppGatewayStack/CreateThingRule/TopicRuleActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CreateThingRuleTopicRuleActionRole2C7FD6CB"
+          }
+        ],
+        "/AwsOcppGatewayStack/CreateThingRule/TopicRuleActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CreateThingRuleTopicRuleActionRoleDefaultPolicy898EFC4B"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeadLetterQueueForDeletedThings/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeadLetterQueueForDeletedThings5875D721"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeadLetterQueueForDeletedThings/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeadLetterQueueForDeletedThingsPolicy178FC5A2"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeletedThings/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeletedThingsA7DD5BBA"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeletedThings/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeletedThingsPolicyF257134F"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeleteThing/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteThingServiceRoleB0E1270F"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeleteThing/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteThingServiceRoleDefaultPolicy46A8818C"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeleteThing/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteThing53890846"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeleteThing/LogRetention/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteThingLogRetention5F5D60F6"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeleteThing/SqsEventSource:AwsOcppGatewayStackDeletedThings0B3A925C/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteThingSqsEventSourceAwsOcppGatewayStackDeletedThings0B3A925C1C637146"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeleteThingRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteThingRule1838D7DF"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeleteThingRule/TopicRuleActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteThingRuleTopicRuleActionRoleF3CAB9DD"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeleteThingRule/TopicRuleActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeleteThingRuleTopicRuleActionRoleDefaultPolicyE3E10677"
+          }
+        ],
+        "/AwsOcppGatewayStack/Policy": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Policy"
+          }
+        ],
+        "/AwsOcppGatewayStack/KeysCerts/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "KeysCertsA9088F21"
+          }
+        ],
+        "/AwsOcppGatewayStack/KeysCerts/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "KeysCertsCustomResourcePolicyFD54CBC7"
+          }
+        ],
+        "/AwsOcppGatewayStack/AttachPolicyIOT/Resource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AttachPolicyIOT552A8C9A"
+          }
+        ],
+        "/AwsOcppGatewayStack/AttachPolicyIOT/CustomResourcePolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AttachPolicyIOTCustomResourcePolicy441BE032"
+          }
+        ],
+        "/AwsOcppGatewayStack/IOTAmazonRootCAStorage/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IOTAmazonRootCAStorage2C3D4BB0"
+          }
+        ],
+        "/AwsOcppGatewayStack/IOTPemCertificate/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IOTPemCertificate43539AB1"
+          }
+        ],
+        "/AwsOcppGatewayStack/IOTPublicCertificate/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IOTPublicCertificate41596AD5"
+          }
+        ],
+        "/AwsOcppGatewayStack/IOTPrivateCertificate/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IOTPrivateCertificateCD8C5E6E"
+          }
+        ],
+        "/AwsOcppGatewayStack/Cluster/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ClusterEB0386A7"
+          }
+        ],
+        "/AwsOcppGatewayStack/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Role1ABCC5F0"
+          }
+        ],
+        "/AwsOcppGatewayStack/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RoleDefaultPolicy5FFB7DAB"
+          }
+        ],
+        "/AwsOcppGatewayStack/ExecutionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExecutionRole605A040B"
+          }
+        ],
+        "/AwsOcppGatewayStack/ExecutionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExecutionRoleDefaultPolicyA5B92313"
+          }
+        ],
+        "/AwsOcppGatewayStack/LogGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LogGroupF5B46931"
+          }
+        ],
+        "/AwsOcppGatewayStack/Task/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Task79114B6B"
+          }
+        ],
+        "/AwsOcppGatewayStack/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SecurityGroupDD263621"
+          }
+        ],
+        "/AwsOcppGatewayStack/Service/Service": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ServiceD69D759B"
+          }
+        ],
+        "/AwsOcppGatewayStack/Service/TaskCount/Target/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ServiceTaskCountTarget23E25614"
+          }
+        ],
+        "/AwsOcppGatewayStack/Service/TaskCount/Target/AutoscalingProps/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ServiceTaskCountTargetAutoscalingProps1D43EC9F"
+          }
+        ],
+        "/AwsOcppGatewayStack/LoadBalancer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LoadBalancerBE9EEC3A"
+          }
+        ],
+        "/AwsOcppGatewayStack/LoadBalancer/TCPListener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LoadBalancerTCPListener794C2696"
+          }
+        ],
+        "/AwsOcppGatewayStack/LoadBalancer/TCPListener/tcpGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LoadBalancerTCPListenertcpGroup27E33887"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeadLetterQueueForIncomingMessages/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeadLetterQueueForIncomingMessagesFEF05D43"
+          }
+        ],
+        "/AwsOcppGatewayStack/DeadLetterQueueForIncomingMessages/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeadLetterQueueForIncomingMessagesPolicyB4256BC8"
+          }
+        ],
+        "/AwsOcppGatewayStack/IncomingMessagesQueue/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IncomingMessagesQueueFD1163B2"
+          }
+        ],
+        "/AwsOcppGatewayStack/IncomingMessagesQueue/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IncomingMessagesQueuePolicyC692B9C3"
+          }
+        ],
+        "/AwsOcppGatewayStack/MessagesFromChargePointsRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MessagesFromChargePointsRule3B6FE04C"
+          }
+        ],
+        "/AwsOcppGatewayStack/MessagesFromChargePointsRule/TopicRuleActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MessagesFromChargePointsRuleTopicRuleActionRole12C61A2D"
+          }
+        ],
+        "/AwsOcppGatewayStack/MessagesFromChargePointsRule/TopicRuleActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MessagesFromChargePointsRuleTopicRuleActionRoleDefaultPolicy8A02C6E3"
+          }
+        ],
+        "/AwsOcppGatewayStack/OCPPMessageProcessor/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OCPPMessageProcessorServiceRoleC800399C"
+          }
+        ],
+        "/AwsOcppGatewayStack/OCPPMessageProcessor/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OCPPMessageProcessorServiceRoleDefaultPolicyC8E56962"
+          }
+        ],
+        "/AwsOcppGatewayStack/OCPPMessageProcessor/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OCPPMessageProcessor63832E8F"
+          }
+        ],
+        "/AwsOcppGatewayStack/OCPPMessageProcessor/LogRetention/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OCPPMessageProcessorLogRetentionA8B91D1A"
+          }
+        ],
+        "/AwsOcppGatewayStack/OCPPMessageProcessor/SqsEventSource:AwsOcppGatewayStackIncomingMessagesQueue5DC91AE9/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OCPPMessageProcessorSqsEventSourceAwsOcppGatewayStackIncomingMessagesQueue5DC91AE9BCD07467"
+          }
+        ],
+        "/AwsOcppGatewayStack/PublishToOutTopicPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PublishToOutTopicPolicyDC4DDD3B"
+          }
+        ],
+        "/AwsOcppGatewayStack/loadBalancerDnsName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "loadBalancerDnsName"
+          }
+        ],
+        "/AwsOcppGatewayStack/websocketURL": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "websocketURL"
+          }
+        ],
+        "/AwsOcppGatewayStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/AwsOcppGatewayStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/AwsOcppGatewayStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "AwsOcppGatewayStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
